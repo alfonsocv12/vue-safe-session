@@ -1,5 +1,5 @@
 import { SessionCookie } from "./types";
-import { SHA256, AES } from 'crypto-js'
+import { AES, enc } from 'crypto-js'
 
 class CookieHandler {
 
@@ -58,9 +58,7 @@ class CookieHandler {
     /** get the session cooki dehash and returns the object inside the hash*/
     getSessionObject(): Record<string, unknown> {
         const sessionHash = this.getCookie('session')
-        console.log(sessionHash);
-        const sessionObjectString = AES.decrypt(sessionHash, this.key).toString()
-        console.log(sessionObjectString)
+        const sessionObjectString = AES.decrypt(sessionHash, this.key).toString(enc.Utf8)
         return JSON.parse(sessionObjectString)
     }
 
