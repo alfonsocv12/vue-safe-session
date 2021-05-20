@@ -12,7 +12,7 @@ class CookieHandler {
 
     /**Constructor function */
     constructor(secretKey: string) {
-        this.key = SHA256(secretKey).toString();
+        this.key = secretKey;
     }
 
     /**This is the install function for vue to become a plugin */
@@ -44,8 +44,10 @@ class CookieHandler {
         this.updateSessionObject(token, expiration, refreshToken)
         const sessionCookie = AES.encrypt(
             JSON.stringify(this.#sessionObject), this.key
-        )
-        document.cookie = `session=${sessionCookie};`
+        ).toString()
+        console.log(sessionCookie);
+        sessionStorage.setItem('session', sessionCookie)
+        document.cookie = `session=${encodeURIComponent(sessionCookie)};`
     }
 
     /**This functions clears the session cookie from cokies */
@@ -56,7 +58,9 @@ class CookieHandler {
     /** get the session cooki dehash and returns the object inside the hash*/
     getSessionObject(): Record<string, unknown> {
         const sessionHash = this.getCookie('session')
+        console.log(sessionHash);
         const sessionObjectString = AES.decrypt(sessionHash, this.key).toString()
+        console.log(sessionObjectString)
         return JSON.parse(sessionObjectString)
     }
 
