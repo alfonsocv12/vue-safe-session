@@ -1,13 +1,19 @@
 import { SessionCookie } from "./types";
 import { SHA256, AES } from 'crypto-js'
 
-class cookieHandler {
+class CookieHandler {
 
     key: string;
     #sessionObject: SessionCookie = {
         token: undefined,
         exp: undefined,
         refreshToken: undefined
+    }
+
+    install (Vue) {
+        Vue.prototype.$safeSession = {};
+        Vue.prototype.$safeSession['config'] = this;
+        Vue.$safeSession = this;
     }
 
     constructor(secretKey: string) {
@@ -39,4 +45,6 @@ class cookieHandler {
     }
 }
 
-export default cookieHandler
+export default (function(secretKey: string) {
+    return new CookieHandler(secretKey)
+})

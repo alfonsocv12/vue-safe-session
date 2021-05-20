@@ -1,6 +1,6 @@
 {
   "name": "vue-safe-session",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "Safe cookie session for your users",
   "main": "dist/index.js",
   "author": "Alfonso Villalobos",
@@ -9,6 +9,7 @@
   "scripts": {
     "build": "tsc"
   },
+  "repository": "https://github.com/alfonsocv12/vue-safe-session",
   "dependencies": {
     "@types/crypto-js": "^4.0.1",
     "cryptojs": "^2.5.3",
