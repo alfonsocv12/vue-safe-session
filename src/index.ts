@@ -45,8 +45,6 @@ class CookieHandler {
         const sessionCookie = AES.encrypt(
             JSON.stringify(this.#sessionObject), this.key
         ).toString()
-        console.log(sessionCookie);
-        sessionStorage.setItem('session', sessionCookie)
         document.cookie = `session=${encodeURIComponent(sessionCookie)};`
     }
 
