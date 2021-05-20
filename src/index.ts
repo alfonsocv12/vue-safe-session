@@ -70,7 +70,6 @@ class CookieHandler {
         cookieArray.forEach((cookieKeyValueString) => {
             // Split cookie string and get all individual name=value pairs in an array
             const cookiePair = cookieKeyValueString.split('=')
-            console.log(cookieKeyValueString)
             
             if (name.trim() === cookiePair[0].trim())  {
                 cookieValue = decodeURIComponent(cookiePair[1])
