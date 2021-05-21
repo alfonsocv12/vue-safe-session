@@ -56,7 +56,9 @@ class CookieHandler {
     /** get the session cooki dehash and returns the object inside the hash*/
     getSessionObject(): Record<string, unknown> {
         const sessionHash = this.getCookie('session')
-        const sessionObjectString = AES.decrypt(sessionHash, this.key).toString(enc.Utf8)
+        const sessionObjectString = AES.decrypt(
+            sessionHash, this.key
+        ).toString(enc.Utf8)
         return JSON.parse(sessionObjectString)
     }
 
